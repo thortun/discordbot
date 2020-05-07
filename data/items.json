@@ -1,0 +1,13 @@
+{
+  "items": [
+    {
+      "name": "Shortsword of magics",
+      "description": "A short sword that has magics."
+    },
+    {
+      "name": "Bag of Holding",
+      "description": "A bag to hold things.",
+      "knowledge" : []
+    }
+  ]
+}
