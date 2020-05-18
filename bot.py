@@ -9,7 +9,6 @@ import json
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
-
 client = discord.Client()
 
 @client.event
@@ -19,8 +18,8 @@ async def on_ready():
             break
 
     print(
-        f'{client.user} is connected to the following guild:\n'
-        f'{guild.name}(id: {guild.id})'
+        '{client.user} is connected to the following guild:\n'
+        '{guild.name}(id: {guild.id})'
     )
 
 @client.event
@@ -45,6 +44,17 @@ async def on_message(message):
 
 def spell_to_msg(spell):
   msg = "```\n%s" % (spell["name"])
+  if "school" in spell:
+      msg += "\n%s" % spell["school"]["name"]
+  if "components" in spell:
+    msg += "\n"
+    for comp in spell["components"]:
+      msg += "%s  " % comp
+  if "casting_time" in spell:
+      msg += "\nCast time: %s" % spell["casting_time"]
+  msg += "\nDuration: %s" % spell["duration"]
+  if spell["concentration"]:
+      msg += ", concentration"
   for desc in spell["desc"]:
     msg += "\n%s" % desc
   if "higher_level" in spell:
